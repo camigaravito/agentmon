@@ -1,0 +1,4 @@
+2025-08-30 00:57:24 | INFO | project | Sistema inicializado y listo
+2025-08-30 00:57:24 | INFO | project | Archivo de log: ./logs\300825_005724.log
+2025-08-30 00:57:24 | INFO | project | Iniciando emulador con ROM: ./src/resources/pkm_red.gb
+2025-08-30 00:57:46 | INFO | project | Emulador detenido correctamente

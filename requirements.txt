@@ -1,0 +1,6 @@
+numpy==2.3.2
+pillow==11.3.0
+pyboy==2.6.0
+PySDL2==0.9.17
+pysdl2-dll==2.32.0
+python-dotenv==1.1.1

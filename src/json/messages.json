@@ -1,0 +1,9 @@
+{
+  "system.ready": "Sistema inicializado y listo",
+  "config.env_loaded": "Variables de entorno cargadas desde .env",
+  "emulator.start": "Iniciando emulador con ROM: {rom_path}",
+  "emulator.stop": "Emulador detenido correctamente",
+  "emulator.tick_limit": "Alcanzado límite de ticks: {ticks}",
+  "emulator.rom_not_found": "ROM no encontrado en ruta: {rom_path}",
+  "error.unexpected": "Error inesperado: {error}"
+}
