@@ -1,20 +1,38 @@
-pycache/
+# Carpetas de cache de Python
+__pycache__/
+**/__pycache__/
 .pytest_cache/
 .mypy_cache/
+.ruff_cache/
+
+# IDEs
 .vscode/
 .idea/
 .DS_Store
+
+# Variables de entorno
 .env
+
+# Entornos virtuales
 venv/
 .venv/
+
+# Construcción y distribución
 dist/
 build/
+*.egg-info/
+
+# Cobertura de código
 .coverage
 coverage.xml
+
+# Logs
 logs/
-src/resources/
-.ruff_cache/
 *.log
+
+# Archivos compilados de Python
 *.pyc
 *.pyo
-*.egg-info/
+
+# Recursos (si no son necesarios)
+src/resources/
