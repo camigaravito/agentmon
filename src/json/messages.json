@@ -1,9 +1,22 @@
 {
-  "system.ready": "Sistema inicializado y listo,",
+  "system.ready": "Sistema inicializado y listo",
   "config.env_loaded": "Variables de entorno cargadas desde .env",
+  "config.file_not_found": "Archivo no encontrado: {file}",
   "emulator.start": "Iniciando emulador con ROM: {rom_path}",
   "emulator.stop": "Emulador detenido correctamente",
   "emulator.tick_limit": "Alcanzado límite de ticks: {ticks}",
   "emulator.rom_not_found": "ROM no encontrado en ruta: {rom_path}",
+  "coordinator.agents_registered": "Agentes registrados en el coordinador",
+  "coordinator.context_switched": "Cambio de contexto: {from_context} → {to_context}",
+  "coordinator.context_detection_error": "Error detectando contexto: {error}",
+  "coordinator.no_active_agent": "No hay agente activo disponible",
+  "explorer.actions_not_found": "Archivo de acciones no encontrado: {file}",
+  "explorer.step_completed": "Exploración: posición {position}, acción {action}, visitas {visits}",
+  "explorer.action_execution_error": "Error ejecutando acción {action}: {error}",
+  "combat.actions_not_found": "Archivo de acciones no encontrado: {file}",
+  "combat.state_read_error": "Error leyendo estado de batalla: {error}",
+  "combat.step_completed": "Combate: turno {turn}, acción {action}, HP jugador {player_hp}, HP enemigo {enemy_hp}",
+  "combat.action_execution_error": "Error ejecutando acción de combate {action}: {error}",
+  "combat.no_battle_active": "No hay batalla activa",
   "error.unexpected": "Error inesperado: {error}"
 }
