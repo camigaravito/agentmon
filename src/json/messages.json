@@ -18,5 +18,20 @@
   "combat.step_completed": "Combate: turno {turn}, acción {action}, HP jugador {player_hp}, HP enemigo {enemy_hp}",
   "combat.action_execution_error": "Error ejecutando acción de combate {action}: {error}",
   "combat.no_battle_active": "No hay batalla activa",
-  "error.unexpected": "Error inesperado: {error}"
+  "error.unexpected": "Error inesperado: {error}",
+  "menu.start_clicked": "Menú: Iniciar clicked",
+  "ui.start_emulator": "UI: Iniciando simulación",
+  "ui.resume_emulator": "UI: Reanudando simulación",
+  "explorer.step_summary": "Exploración - Pasos: {total_steps}, Posiciones únicas: {unique_positions}, Posición actual: {position}",
+  "combat.battle_summary": "Combate - Turnos: {turns}, HP jugador: {player_hp}, HP enemigo: {enemy_hp}",
+  "system.progress_update": "Progreso: {progress} - Paso {step}, Posiciones exploradas: {positions_explored}",
+  "display.frame_capture_error": "Error capturando frame: {error}",
+  "display.frame_processing_error": "Error procesando frame: {error}",
+  "system.thread_progress": "Simulación ejecutándose - Paso {step}/{max_steps}",
+  "display.connecting_emulator": "Display: Conectando con emulador",
+  "display.no_screen_available": "Display: Screen buffer no disponible en PyBoy",
+  "display.frame_receive_error": "Display: Error recibiendo frame: {error}",
+  "display.disconnecting_emulator": "Display: Desconectando emulador",
+  "emulator.no_screen_buffer": "Emulator: Screen buffer no disponible",
+  "emulator.tick_failed": "Emulator: Tick falló en paso {step}"
 }
