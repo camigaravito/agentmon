@@ -1,83 +1,83 @@
 from PySide6.QtWidgets import QMenuBar, QWidget, QMessageBox
-from PySide6.QtGui import QKeySequence, QAction
+from PySide6.QtGui import QAction, QKeySequence
 from PySide6.QtCore import Signal
 from config.logger_core import log_msg
 
+
 class GameMenuBar(QMenuBar):
-    start_requested   = Signal()
+    start_requested = Signal()
     restart_requested = Signal()
-    pause_requested   = Signal()
+    pause_requested = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._running = False
-        self._paused = False
-        self._init_menu()
+        self.is_running = False
+        self.is_paused = False
+        self.setup_menus()
 
-    def _init_menu(self):
-        emu = self.addMenu("&Emulador")
+    def setup_menus(self):
+        m = self.addMenu("&Emulador")
+        self.start_action = QAction("&Iniciar", self)
+        self.start_action.setShortcut(QKeySequence("Ctrl+S"))
+        self.start_action.triggered.connect(self.on_start_clicked)
+        m.addAction(self.start_action)
 
-        self._start = QAction("&Iniciar", self)
-        self._start.setShortcut(QKeySequence("Ctrl+S"))
-        self._start.triggered.connect(self._on_start)
-        emu.addAction(self._start)
+        r = QAction("&Reiniciar", self)
+        r.setShortcut(QKeySequence("Ctrl+R"))
+        r.triggered.connect(self.on_restart_clicked)
+        m.addAction(r)
 
-        restart = QAction("&Reiniciar", self)
-        restart.setShortcut(QKeySequence("Ctrl+R"))
-        restart.triggered.connect(self._on_restart)
-        emu.addAction(restart)
+        m.addSeparator()
 
-        emu.addSeparator()
+        self.pause_action = QAction("&Pausar", self)
+        self.pause_action.setShortcut(QKeySequence("Space"))
+        self.pause_action.triggered.connect(self.on_pause_clicked)
+        self.pause_action.setEnabled(False)
+        m.addAction(self.pause_action)
 
-        self._pause = QAction("&Pausar", self)
-        self._pause.setShortcut(QKeySequence("Space"))
-        self._pause.triggered.connect(self._on_pause)
-        self._pause.setEnabled(False)
-        emu.addAction(self._pause)
+        m.addSeparator()
 
-        emu.addSeparator()
+        e = QAction("&Salir", self)
+        e.setShortcut(QKeySequence("Ctrl+Q"))
+        e.triggered.connect(self.close_application)
+        m.addAction(e)
 
-        exit_action = QAction("&Salir", self)
-        exit_action.setShortcut(QKeySequence("Ctrl+Q"))
-        exit_action.triggered.connect(self._on_exit)
-        emu.addAction(exit_action)
+        h = self.addMenu("&Ayuda")
+        a = QAction("&Acerca de", self)
+        a.triggered.connect(self.show_about)
+        h.addAction(a)
 
-        help_menu = self.addMenu("&Ayuda")
-        about = QAction("&Acerca de", self)
-        about.triggered.connect(self._on_about)
-        help_menu.addAction(about)
-
-    def _on_start(self):
+    def on_start_clicked(self):
         log_msg("info", "menu.start_clicked")
         self.start_requested.emit()
-        self._update_state(running=True, paused=False)
+        self._set_state(running=True, paused=False)
 
-    def _on_restart(self):
+    def on_restart_clicked(self):
         log_msg("info", "menu.restart_clicked")
         self.restart_requested.emit()
-        self._update_state(running=True, paused=False)
+        self._set_state(running=True, paused=False)
 
-    def _on_pause(self):
+    def on_pause_clicked(self):
         log_msg("info", "menu.pause_clicked")
         self.pause_requested.emit()
-        self._update_state(running=True, paused=True)
+        self._set_state(running=True, paused=True)
 
-    def _on_exit(self):
-        parent = self.parent()
-        if isinstance(parent, QWidget):
-            parent.close()
+    def _set_state(self, running: bool, paused: bool):
+        self.is_running, self.is_paused = running, paused
+        self.start_action.setEnabled(not running or paused)
+        self.pause_action.setEnabled(running and not paused)
+        self.start_action.setText("&Reanudar" if paused else "&Iniciar")
 
-    def _on_about(self):
-        parent = self.parent()
-        if isinstance(parent, QWidget):
+    def close_application(self):
+        p = self.parent()
+        if isinstance(p, QWidget) and hasattr(p, "close"):
+            p.close()
+
+    def show_about(self):
+        p = self.parent()
+        if isinstance(p, QWidget):
             QMessageBox.about(
-                parent,
+                p,
                 "Acerca de AgentMon",
-                "AgentMon v1.0\nSistema Multi-Agente para PyBoy\n© 2025 UNAD"
+                "AgentMon v1.0\n\nSistema Multi-Agente para PyBoy\nDesarrollado con PySide6 y PyBoy\n© 2025 UNAD"
             )
-
-    def _update_state(self, running: bool, paused: bool):
-        self._running, self._paused = running, paused
-        self._start.setEnabled(not running or paused)
-        self._pause.setEnabled(running and not paused)
-        self._start.setText("&Reanudar" if paused else "&Iniciar")

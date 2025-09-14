@@ -1,6 +1,16 @@
 {
-  "movement": ["up", "down", "left", "right"],
-  "buttons": ["a", "b", "start", "select"],
+  "movement": {
+    "up": "up",
+    "down": "down", 
+    "left": "left",
+    "right": "right"
+  },
+  "buttons": {
+    "a": "a",
+    "b": "b",
+    "start": "start",
+    "select": "select"
+  },
   "combinations": {
     "menu_open": "start",
     "menu_back": "b",
@@ -11,7 +21,7 @@
     "exploration": {
       "primary_actions": ["up", "down", "left", "right", "a", "b"],
       "menu_actions": ["start", "select"],
-      "interaction": "a"
+      "interaction_button": "a"
     },
     "combat": {
       "primary_actions": ["a", "b"],
@@ -20,9 +30,9 @@
     },
     "menu": {
       "navigation": ["up", "down", "left", "right"],
-      "select": "a",
+      "selection": "a",
       "back": "b",
-      "toggle": "start"
+      "menu_toggle": "start"
     }
   }
 }
