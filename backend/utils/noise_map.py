@@ -1,5 +1,3 @@
-# backend/utils/noise_map.py
-
 from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Tuple
@@ -19,7 +17,6 @@ class NoiseConfig:
     cols: int = 20
     decay: float = 0.997
     max_val: float = 255.0
-    # Usar default_factory para objetos mutables/anidados
     weights: InterestWeights = field(default_factory=InterestWeights)
 
 class NoiseVisitMap:

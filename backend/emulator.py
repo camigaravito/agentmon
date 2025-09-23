@@ -1,5 +1,3 @@
-# backend/emulator.py
-
 import os
 import threading
 import time
@@ -14,7 +12,6 @@ from config.logger_core import log_msg
 
 load_dotenv()
 
-# Variable de módulo para exponer el agente explorador
 last_explorer: Optional[ExplorerAgent] = None
 
 def run_pyboy_threaded() -> Tuple[Optional[PyBoy], Optional[threading.Thread]]:
@@ -48,7 +45,6 @@ def run_pyboy_threaded() -> Tuple[Optional[PyBoy], Optional[threading.Thread]]:
     combat = CombatAgent(pyboy)
     coordinator.register_agents(explorer, combat)
 
-    # Exponer en variable de módulo
     last_explorer = explorer
 
     log_msg("info", "emulator.agents_created",

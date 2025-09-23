@@ -8,7 +8,6 @@ class NoisePanel(QWidget):
         super().__init__(parent)
         self.label = QLabel(alignment=Qt.AlignmentFlag.AlignCenter)
         self.label.setFixedSize(300, 300)
-        # Fondo blanco y borde tenue
         self.label.setStyleSheet(
             "QLabel { background-color: #ffffff; color: #666; border: 1px solid #ccc; }"
         )

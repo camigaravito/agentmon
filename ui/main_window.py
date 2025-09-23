@@ -49,12 +49,10 @@ class MainWindow(QMainWindow):
         self.menu.pause_requested.connect(self.pause_emulator)
 
     def _init_timer(self):
-        # Timer de estado cada 2 segundos
         self.status_timer = QTimer(self)
         self.status_timer.timeout.connect(self._update_status)
         self.status_timer.start(2000)
 
-        # Timer del mapa de visitas cada 200ms (~5 FPS)
         self.noise_timer = QTimer(self)
         self.noise_timer.timeout.connect(self._update_noise_panel)
         self.noise_timer.start(200)

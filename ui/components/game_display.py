@@ -1,5 +1,3 @@
-# ui/components/game_display.py
-
 from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
 from PySide6.QtCore import QTimer, QThread, Signal, Qt, QSize
 from PySide6.QtGui import QImage, QPixmap
@@ -29,7 +27,7 @@ class GameDisplayThread(QThread):
                         self.frame_ready.emit(arr.copy())
                 else:
                     break
-                self.msleep(33)  # ~30 FPS
+                self.msleep(33)
             except Exception as e:
                 log_msg("error", "display.frame_capture_error", error=str(e))
                 break
@@ -79,7 +77,7 @@ class GameDisplay(QWidget):
 
     def connect_emulator(self, pyboy: PyBoy):
         self.pyboy = pyboy
-        self.game_label.setText("")  # Quitar texto para que sólo se vea el stream
+        self.game_label.setText("")
         self.has_frame = False
 
         self.capture_thread = GameDisplayThread(pyboy)
@@ -93,7 +91,6 @@ class GameDisplay(QWidget):
             if frame is not None and frame.size > 0:
                 self.frame_buffer.add_frame(frame)
                 if not self.has_frame:
-                    # Prellenar el buffer para evitar ciclos sin frame
                     self.frame_buffer.add_frame(frame)
                     self.has_frame = True
                     if self.game_label.text():
@@ -104,7 +101,7 @@ class GameDisplay(QWidget):
     def update_display(self):
         current_frame = self.frame_buffer.get_current_frame()
         if current_frame is None:
-            return  # Mantener último pixmap sin texto
+            return
 
         try:
             frame = np.ascontiguousarray(current_frame)
@@ -141,7 +138,6 @@ class GameDisplay(QWidget):
 
         self.frame_buffer.clear()
         self.pyboy = None
-        # Dejar el label sin texto ni pixmap para fondo negro limpio
         self.game_label.clear()
 
         log_msg("info", "display.emulator_disconnected")
